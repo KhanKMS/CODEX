@@ -1,0 +1,9 @@
+1. BIOS : Intel VT 등 가상화 옵션 활성화 
+   - BIOS에서 가상화 옵션, 메모리 
+   - AMD :  BIOS > Advanced > CPU > SVM : Enable, "enable/disable CPU Virtualization"
+   - Intel : BIOS > Advanced > CPU > Intel Virtualization Technology(VMX, VMM) : Enable, 
+2. Windows WSL2 설치 
+   https://docs.microsoft.com/ko-kr/windows/wsl/install-manual
+3. Docker Desktop Installer 실행 > 설치 
+
+   
