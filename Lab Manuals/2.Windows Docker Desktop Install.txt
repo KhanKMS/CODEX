@@ -2,8 +2,22 @@
    - BIOS에서 가상화 옵션, 메모리 
    - AMD :  BIOS > Advanced > CPU > SVM : Enable, "enable/disable CPU Virtualization"
    - Intel : BIOS > Advanced > CPU > Intel Virtualization Technology(VMX, VMM) : Enable, 
-2. Windows WSL2 설치 
-   https://docs.microsoft.com/ko-kr/windows/wsl/install-manual
-3. Docker Desktop Installer 실행 > 설치 
 
+2. Windows WSL2 설치 
+   - BIOS 설정이 완료된 후 시작해야 함. 
+   - Windows Terminal, PowerShell 명령 창에서 아래 커맨드 입력 
+     PS C:\docker>wsl --install
+   - 아래 링크를 참조하여 ubuntu 22.04 LTS 설치 완료 필요
+   > 참고 문서 : https://docs.microsoft.com/ko-kr/windows/wsl/install-manual
+
+3. Docker Desktop Installer 다운로드 
+   - https://docs.docker.com/desktop/install/windows-install/
+  
+4. Docker Desktop Installer 실행 및 설치 
+   - Docker Desktop 실행 하게 되면 오른쪽 트레이에 도커 백그라운드 실행 이미지 보임 
+
+5. Windows 터미널에서 docker cli 기본 명령어 입력 및 실행 상태 확인  
+   - PS C:\docker\>docker version 		# 도커 엔진 버전 확인 
+   - PS C:\docker\>docker system df 		# 도커 시스템 스토리지 사용 확인 
+   - PS C:\docker\>docker system info 	# 도커 시스템 개요 확인
    
