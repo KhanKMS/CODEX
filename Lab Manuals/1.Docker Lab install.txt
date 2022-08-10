@@ -1,4 +1,5 @@
 1. 탐색기에서 C:\docker 폴더 생성 
+   - 실습간 소통을 위해서 동일한 폴더 사용을 권장
 
 2. Windows Terminal 설치 
    - PowerShell, WSL CLI와 같은 명령줄 도구 실행을 위한 MS 최신 터미널 유틸리티  
