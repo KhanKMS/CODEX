@@ -1,0 +1,18 @@
+1. 탐색기에서 C:\docker 폴더 생성 
+
+2. Windows Terminal 설치 
+   - PowerShell, WSL CLI와 같은 명령줄 도구 실행을 위한 MS 최신 터미널 유틸리티  
+     > https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=ko-kr&gl=KR
+     > Microsoft Store에서 설치함. 
+
+2. 시작 > Windows PowerShell or Windows Terminal 에서 Git Windows 버전 설치  
+    PS C:\docker> winget install --id Git.Git -e --source winget
+
+3.  Git (오픈소스 기반 분산 소스 관리, 버전 관리, 형상 관리 시스템) 
+     - 개발자 : 리누스 토르발스(리눅스 커널 개발한 세계적인 오픈소스 셀렙 개발자) 
+     - 리눅스 커널 개발 도중 기존 소스 관리 프로그램(Subversion, SVN)들이 미진(ㅠ.ㅠ)하여 직접 개발함 
+
+4.   git clone https://github.com/KhanKMS/CODEX.git
+     - KhanKMS GitHub에 저장된 소스를 c:\Docker\에 복제하라는 명령
+     - 실습에 필요한 정보, 코드들을 GitHub에 미리 저장해 두었음. 
+ 
