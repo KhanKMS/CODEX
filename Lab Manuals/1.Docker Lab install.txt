@@ -7,7 +7,7 @@
      > Microsoft Store에서 설치함. 
 
 3. 시작 > Windows PowerShell or Windows Terminal 에서 Git Windows 버전 설치  
-    PS C:\docker> winget install --id Git.Git -e --source winget
+   - PS C:\docker> winget install --id Git.Git -e --source winget
 
 4.  Git (오픈소스 기반 분산 소스 관리, 버전 관리, 형상 관리 시스템) 
      - 개발자 : 리누스 토르발스(리눅스 커널 개발한 세계적인 오픈소스 셀렙 개발자) 

@@ -1,0 +1,7 @@
+ACR_NAME=acrkmsreg
+ACR_RES_GROUP=$ACR_NAME
+
+az group create --resource-group $ACR_RES_GROUP --location koreacentral
+az acr create --resource-group $ACR_RES_GROUP --name $ACR_NAME --sku Standard --location koreacentral
+
+LOGIN SERVER : acrkmsreg.azurecr.io
