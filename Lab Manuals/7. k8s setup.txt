@@ -16,21 +16,20 @@ SP_NAME=sample-acr-service-principal
 
 SP_PASSWD=$(az ad sp create-for-rbac --name $SP_NAME --role Reader --scopes $ACR_ID --query password --output tsv)
 
-az ad sp show --id bd15c25c-a1bd-46e1-a364-33a7997985bb --query appId
+APP_ID=$(az ad sp show --id (000000-0000-0000-0000-0000000) --query appId)
+#Azure AD 관리자 화면에서 App ID 확인 가능
 
-APP_ID=
-
-AKS_CLUSTERS_NAME=AKSCluster 
-
+AKS_CLUSTER_NAME=AKSCluster 
+AKS_RES_GROUP=$AKS_CLUSTER_NAME
 
 az aks create \
 --name $AKS_CLUSTER_NAME \
 --resource-group $AKS_RES_GROUP \
 --node-count 3 \
 --kubernetes-version 1.22.11 \
---node-vm-size Standard_DS2_v2 \
+--node-vm-size Standard_A2_v2 \
 --generate-ssh-keys \
 --service-principal $APP_ID \
 --client-secret $SP_PASSWD
 
-2146c3b4-a03d-4c8a-bd93-361d63b2455c
+az aks get-credentials --admin --resource-group $AKS_RES_GROUP --name $AKS_CLUSTER_NAME
