@@ -1,3 +1,5 @@
 
 1. 쿠버네티스 클러스터 연결위한 인증 작업  
    az aks get-credentials --resource-group AKSCluster --name AKSCluster 
+
+2. deploy.yaml 파일에 acr 이미지 경로 수정 필요 
