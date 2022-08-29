@@ -8,7 +8,7 @@ az acr create --resource-group $ACR_RES_GROUP --name $ACR_NAME --sku Standard --
 
 LOGIN SERVER : acrkmsreg.azurecr.io
 
----- Azure Kubernetes Service 클러스터 작성 
+---- Azure Kubernetes Service을 위한 서비스 프린서플 작성  
 
 ACR_ID=$(az acr show --name $ACR_NAME --query id --output tsv)
 
@@ -16,10 +16,18 @@ SP_NAME=sample-acr-service-principal
 
 SP_PASSWD=$(az ad sp create-for-rbac --name $SP_NAME --role Reader --scopes $ACR_ID --query password --output tsv)
 
-APP_ID=$(az ad sp show --id (000000-0000-0000-0000-0000000) --query appId)
-#Azure AD 관리자 화면에서 App ID 확인 가능
+APP_ID="Azure AD 관리자 화면에서 애플리케이션 ID 확인 후 기입"
 
-AKS_CLUSTER_NAME=AKSCluster 
+#az ad sp list 명령으로 AppID 확인 가능 
+ az ad sp list --display-name sample-acr-service-principal
+
+echo $APP_ID 
+echo $SP_PASSWD
+
+
+----- Azure Kubernetes 클러스터 생성 -------------
+
+AKS_CLUSTER_NAME=AKSCluster
 AKS_RES_GROUP=$AKS_CLUSTER_NAME
 
 az aks create \
@@ -32,4 +40,12 @@ az aks create \
 --service-principal $APP_ID \
 --client-secret $SP_PASSWD
 
-az aks get-credentials --admin --resource-group $AKS_RES_GROUP --name $AKS_CLUSTER_NAME
+# VM Size : 엔트리 레벨 2 cpu, 4GB 인스턴스 선택
+# A2 = 엔트리 레벨, 2 cpu, v2 = 버전 2 
+# kubernetes-version : 1.22.11 선택(메이저 버전.마이너버전.패치버전) 
+# Azure 쿠버네티스 클러스터를 생성 시 Noodpool을 이용하는데, 
+   System Nodepool은 반드시 2 cpu, 4 GB 메모리 이상 필수, 운영체제는 리눅스만
+
+
+
+
