@@ -1,4 +1,4 @@
--- Azure Container Registry 서비스 > 이미지 저장 --
+-- Azure Container Registry 서비스 > 이미지 저장 -----------
 
 ACR_NAME=acrkmsreg
 ACR_RES_GROUP=$ACR_NAME
