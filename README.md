@@ -1,3 +1,9 @@
 # CODEX
-Public Clouds Lab : AWS, Azure, GCP 
-MSA Container : Docker, Kubernetes(k8s)
+
+
+
+### Public Clouds Lab : AWS, Azure, GCP
+
+### Container Engine : Docker
+
+### Container Orchestration :  Kubernetes(k8s)
