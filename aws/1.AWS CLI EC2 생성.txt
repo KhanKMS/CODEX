@@ -1,0 +1,59 @@
+1. Key Pair 생성
+
+   	1) aws ec2 create-key-pair --key-name ubuntu --query 'KeyMaterial' --output text > ubuntu.pem
+   	2) chmod 400 MyKeyPair.pem 	
+	   # 사용자만 읽을 수 있도록 리눅스 권한 변경
+	3) aws ec2 describe-key-pairs --key-name ubuntu
+	   # 키페어 표시 하기 
+	4) aws ec2 delete-key-pair --key-name ubuntu 
+	   # 키페어 삭제 하기 
+
+2. Security Group 생성 
+
+	1) aws ec2 describe-security-groups --group-id sg-0837a7cb5f4b3c915
+	   # Security Group 표시하기 
+	   # group-name은 곧 expire되므로 group-id를 사용함. 
+
+	2) curl https://checkip.amazonaws.com 
+	   # 내 랩탑 ip 확인하기, 121.130.73.218 
+
+	3) aws ec2 create-security-group --group-name kmslinux --description "Linux" 
+	   # 보안 그룹 생성	
+
+	3) aws ec2 authorize-security-group-ingress --group-id sg-01bd11d10b0d5e5e0 --protocol tcp --port 22 --cidr 121.130.73.218/32
+	   # 내 랍탑 ip ssh(22) 추가하기 
+
+	4) aws ec2 delete-security-group --group-id sg-04d363760ffc10232
+	   # 그룹 삭제 명령. 
+
+3. AWS ec2 인스턴스 생성 
+
+	1) aws ec2 run-instances --image-id ami-058165de3b7202099 --count 1 --instance-type t2.micro --key-name ubuntu --security-group-ids sg-01bd11d10b0d5e5e0
+           # --image id : aws 관리 콘솔에서 확인 가능, ubuntu Server 22.04 LTS = ami-058165de3b7202099 사용함. 
+	   # --instance-type : aws 관리 콘솔에서 확인 가능, free-tier 되는 작은 규모 사용
+
+
+	2) aws ec2 create-tags --resources i-0ac2054324759a3ef --tags Key=Name,Value=ubuntu 
+           # --resources : 인스턴스 id를 입력함. 
+	   # aws ec2 describe-instances를 통하여 인스턴스 id를 확인 가능함. 
+	
+	3) aws ec2 describe-instances --filters "Name=instance-type,Values=t2.micro" --query "Reservations[].Instances[].InstanceId"
+	   # t2.micro 인스턴스에서 인스턴스 id만 출력함. 
+
+	   aws ec2 describe-instances --filters "Name=tag:Name,Values=ubuntu2204LTS"
+	   # Name이 ubuntu2204TLS인것을 확인함. 
+
+	4) ssh -i "ubuntu.pem" ubuntu@ec2instance_ip 
+           # Keypair 파일이 경로에 존재해야 함. 		
+
+        5) aws ec2 describe-instances --query 'Reservations[0].Instances[0].{"PublicIP":PublicIpAddress}'
+           # IP 주소 확인 
+
+ 
+4. AWS ec2 인스턴스 중지/종료 
+
+	1) aws ec2 stop-instances --instance-ids i-0ac2054324759a3ef
+	2) aws ec2 start-instances --instance-ids i-0ac2054324759a3ef
+	3) aws ec2 reboot-instances --instance-ids i-0ac2054324759a3ef  
+	4) aws ec2 terminate-instances --instance-ids i-0ac2054324759a3ef
+	   # 아예 삭제하기 위해서는 종료(Terminate)해야 함. 
