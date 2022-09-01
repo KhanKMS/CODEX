@@ -12,7 +12,6 @@
 
 	1) aws ec2 describe-security-groups --group-id sg-0837a7cb5f4b3c915
 	   # Security Group 표시하기 
-	   # group-name은 곧 expire되므로 group-id를 사용함. 
 
 	2) curl https://checkip.amazonaws.com 
 	   # 내 랩탑 ip 확인하기, 121.130.73.218 
