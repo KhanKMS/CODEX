@@ -1,6 +1,8 @@
 1-1. Docker Desktop 
 
-	1) 이미지 파일 설치 경로 : %USERPROFILE%\AppData\Local\Docker\wsl\data
+	1) 설치요구 사항 : WSL2(Windows Subsystem for Linux) 설치 필요 
+	2) 이미지 파일 설치 경로 : %USERPROFILE%\AppData\Local\Docker\wsl\data
+
 
 1-2. Docker Engine 설치 
 	   	
