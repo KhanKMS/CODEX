@@ -1,0 +1,40 @@
+Linux umask 의미 (파일, 디렉터리 퍼미션)
+
+$ chmod 755 file1 
+
+파일 		생성 초기값 : 666
+
+소유자 	소유그룹 	기타
+rwx 		rwx 		rwx
+421		421		421
+rw-		rw-		rw- 
+
+디렉토리 	생성 초기값 : 777
+
+소유자 	소유그룹 	기타
+rwx 		rwx 		rwx
+421		421		421
+rwx		rwx		rwx 
+
+umask 022 적용 
+
+파일		생성 초기값 : 666-022=644
+
+소유자 	소유그룹 	기타
+rwx 		rwx 		rwx
+421		421		421
+rw-		r--		r-- 
+
+디렉토리 	생성 초기값 : 777-022=755
+
+소유자 	소유그룹 	기타
+rwx 		rwx 		rwx
+421		421		421
+rwx		r-x		r-x 
+
+ 
+SetUID	chmod 4750 (rws r-x ---) 	일반 사용자에게 파일 실행권한 부여 
+SetGID	chmod 2750 (rwx r-s ---) 	특정 그룹에게 파일 실행 권한 부여 
+Sticky Bit	chmod 1777 (drwxrwxrwt)	 root, 소유자만 해당 파일 삭제. 변경 권한 부여 
+						 공유 디렉토리 사용시 사용 
+
