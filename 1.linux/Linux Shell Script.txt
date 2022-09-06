@@ -1,0 +1,9 @@
+자동 복사 스크립트 
+
+#!/bin/bash
+
+for i in $(seq 1 9)
+do
+        orin.txt "target${i}.txt"
+done
+
