@@ -1,0 +1,23 @@
+tar -cvf <파일명> <압축할 경로>
+
+-c : create
+-v : view (목록 보이기)
+-f : file
+
+tar -xvf <파일명> <압축할 경로>
+
+-x : extract
+-v : view (목록 보이기)
+-f : file
+
+tar -tf <파일명> 
+
+-t : test 아카이브 내역 확인하기 
+
+gzip <압축할 파일>
+gzip -d <압축한 파일 > 
+
+tar+gzip : tar czvf  <압축예정 파일명> <압축대상 디렉터리>
+
+tar+bzip2 : tar cjvf <압축예정 파일명> <압축대상 디렉터리> 
+
