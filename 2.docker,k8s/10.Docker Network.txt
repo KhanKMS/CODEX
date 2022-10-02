@@ -1,0 +1,44 @@
+1. Docker Engine, Desktop 설치후 기본적으로 bridge라는 기본 브릿지가 생김 
+
+2. Docker Container IP 확인 
+   - docker network inspect bridge -f "{{ json .Containers }}" | jq
+     # json 커맨드라인 JSON 처리기인 jq를 사전 설치해야 함. 
+     # dokcer network inspect 명령으로 기본 브릿지인 bridge에 연결된 컨테이너 ip 나열함. 
+
+kms4se@ATHENS:~$ docker network inspect bridge -f "{{ json .Containers }}" | jq
+{
+  "096f01b692c37dfde37e555568cd762209b87b2ed284c937d2df6a24042a295d": {
+    "Name": "proxy",
+    "EndpointID": "b1c00b0fee726083ec00409ba96b2645022eeae1e4049502d7938740d841cca1",
+    "MacAddress": "02:42:ac:11:00:03",
+    "IPv4Address": "172.17.0.3/16",
+    "IPv6Address": ""
+  },
+  "42dada4b99d559ebe4abeaad8a51873b3c99961dca9bdd4cf3fec2b9f39a124e": {
+    "Name": "web",
+    "EndpointID": "c4851d544b5a97fd90824b962a4ac051ea34e7fa8ce962a3c183252b18ae3628",
+    "MacAddress": "02:42:ac:11:00:02",
+    "IPv4Address": "172.17.0.2/16",
+    "IPv6Address": ""
+  }
+}
+
+3. Docker create network로 생성한 wordpress000net1에 연결한 컨테이너 ip 출력 
+
+kms4se@ATHENS:~$ docker network inspect wordpress000net1 -f "{{ json .Containers }}" | jq
+{
+  "03486c7e1951ed3da02820572974fcc146fc95599f848db300f9e17b1c75926a": {
+    "Name": "wordpress000ex12",
+    "EndpointID": "b2cc788bd7fcbad1abf5fc334dd367a98189199a3c4cb47860d80c9dcad8897e",
+    "MacAddress": "02:42:ac:13:00:03",
+    "IPv4Address": "172.19.0.3/16",
+    "IPv6Address": ""
+  },
+  "90ccf3b4be65e7739fba92dc5cc3423f4989b1ca561eced462abf44d372ce646": {
+    "Name": "mysql000ex11",
+    "EndpointID": "d6ad6a29791fd4bf9215798ac0bbe5048fe0ef74738ab8a6b941bc052ad0642c",
+    "MacAddress": "02:42:ac:13:00:02",
+    "IPv4Address": "172.19.0.2/16",
+    "IPv6Address": ""
+  }
+}

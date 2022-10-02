@@ -51,6 +51,9 @@
 	12) docker rmi [이미지id] or [repository]
 
 3. MySql db 서버 설치 및 기동 
+   > MariaDB : MySQL이 Sun에 팔린후 MySQL 개발자들이 개발한 오픈소스 DB 
+   > Oracle은 사용 DBMS 최강자이고, 저작권 분쟁으로 유명한 회사이므로 MySQL이 
+      오픈소스로 지속하기 어려울 수 있어, MySQL 개발자들 MariaDB를 오픈소스 DBMS로 개발함. 
    	
 	1) docker pull mysql 
 	2) docker image ls 
