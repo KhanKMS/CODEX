@@ -1,0 +1,47 @@
+■ Docker 컨테이너 파일 복수
+ 
+1. httpd  실행 하기 
+   $ docker run --name websvr -d -p 8080:80 httpd
+
+2. 웹 브라우저에서 초기 홈페이지 정보 확인
+
+3. Host에서 index.html 수정하기 
+   > nano index.html 
+
+4. Host에서 Docker Container로 index.html 복사하기 
+   > docker cp websvr:/usr/local/apache2/htdocs ./index02.html
+   > index02.html 폴더에 index.html 복사됨. 
+
+5. Host의 index.html을 Docker Container로 복사하기 
+   > docker cp ./index.htm websvr:/usr/local/apache2/htdocs
+
+6. 웹 브라우저에서 바뀐 index.html 내용 확인하기 
+
+■ 도커 바인드 볼륨 마운트 (호스트 파일 시스템 이용)  
+
+1. 호스트 디렉터리 만들기 
+   $ mkdir apafolder 
+
+2. 도커 컨테이너 호스트 디렉터리 마운트하기 
+   $ docker run --name web -d -p 8080:80 -v /home/kms4se/docker/apafolder:/usr/local/apache2/htdocs httpd
+   > WSL Ubuntu 에서 실행해야 함.
+
+3. 도커 컨테이너 윈도우즈 디렉터리 마운트하기 
+   $ docker run --name web -d -p 8080:80 -v c:\docker\:/usr/local/apache2/htdocs httpd
+   > Windows Terminal, PowerShell에서 실행해야 함.   
+
+■ 도커 볼륨 마운트 (도커 엔진 볼륨 이용) 
+
+1. 도커 볼륨 생성 
+   $ docker volume create webstor
+
+2. 아파치 컨테이너 실행 
+   $ docker run --name websvc -d -p 8080:80 -v webstor:/usr/local/apache2/htdocs httpd 
+
+3. 생성한 볼륨 내용 확인 
+   $ docker volume inspect webstor
+
+  > 도커 볼륨 사용 이유 : 웹 프로그램에서 Upload에 서 사용됨 
+    (1) 게시판에서 사용자가 파일을 업로드 함 
+    (2) 해당 파일을 저장할 저장 장소로서 도커 볼륨을 이용함. 
+

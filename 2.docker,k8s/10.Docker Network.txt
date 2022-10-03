@@ -1,4 +1,8 @@
 1. Docker Engine, Desktop 설치후 기본적으로 bridge라는 기본 브릿지가 생김 
+   > Windows Docker Desktop의 경우 WSL vEthernet을 거쳐서 도커 네트워크 설정함. 
+   > 물리서버 IP : 172.30.1.2 --> WSL vEth : 172.29.96.1(G/W) --> Docker bridge : 172.17.0.1(G/W) 	----> Apache 컨테이너 	: 172.17.0.2
+														     		----> Nginx 	컨테이너	: 172.17.0.3
+
 
 2. Docker Container IP 확인 
    - docker network inspect bridge -f "{{ json .Containers }}" | jq

@@ -1,0 +1,23 @@
+1. Redmine과 MariaDB 조합 
+
+・네트워크 생성
+docker network create redminenet
+
+・MariaDB 컨테이너 생성 및 실행 
+docker run --name mariadb -dit --network=redminenet -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_DATABASE=redminedb -e MYSQL_USER=redmine -e MYSQL_PASSWORD=1234 mariadb 
+
+・Redmine 컨테이너 생성 및 실행
+docker run -dit --name redmine --network redminenet -p 8082:3000 -e REDMINE_DB_MYSQL=mariadb -e REDMINE_DB_DATABASE=redminedb -e REDMINE_DB_USERNAME=redmine -e REDMINE_DB_PASSWORD=1234 redmine
+
+
+2. WordPress와 MariaDB 조합 
+
+・네트워크 생성
+docker network create wordpressnet
+
+・MariaDB 컨테이너 생성 및 실행 
+docker run --name mariadb02 -dit  --net=wordpressnet -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_DATABASE=wordpressdb -e MYSQL_USER=wordpress -e MYSQL_PASSWORD=1234 mariadb
+
+・WordPress 컨테이너 생성 및 실행
+docker run --name wordpress -dit  --net=wordpressnet -p 8083:80 -e WORDPRESS_DB_HOST=mariadb02 -e WORDPRESS_DB_NAME=wordpressdb -e WORDPRESS_DB_USER=wordpress -e WORDPRESS_DB_PASSWORD=1234 wordpress
+

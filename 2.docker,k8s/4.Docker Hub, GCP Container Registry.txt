@@ -1,3 +1,22 @@
+< Docker Hub Public Regisry 서비스 시용 > 
+- Docker 공인 이미지 저장소 
+- 사전에 hub.docker.com 에 계정 등록 필요 
+
+1. docker login 
+2. docker pull httpd
+3. nano index.html 
+   KMS Web Test Page
+4. nano Dockerfile 
+   FROM httpd
+   COPY index.html /usr/local/apache2/htdocs  
+5. docker bulid -t webtest . 
+6. docker image tag webtest kms4se/webtest:latest
+7. docker push kms4se/webtest:latest 
+
+> 도커 레지스트리 주소/리포지터리 이름:버전 
+   ex) kms4se/webtest:1.0.0
+
+
 < Docker Private Registry 서비스 이용 >
 
 - Docker가 제공하는 Registry 모듈을 설치하고, 내 로컬 PC에서
@@ -8,19 +27,20 @@
 
 
 1. docker image pull registry
-2. docker container run -d -p 5000:5000 --name registry registry 
-3. docker image tag busybox localhost:5000/docker-jupyter 
-4. docker image push localhost:5000/docker-jupyter
-5. docker image rm busybox
-6. docker image rm localhost:5000/docker-jupyter
-7. docker image pull localhost:5000/docker-jupyter
-8. docker run -it  localhost:5000/docker-jupyter echo "Hello!"
+2. docker container run -d -p 5000:5000 --name regdocker registry 
+3. docker image pull busybox
+4. docker image tag busybox localhost:5000/mars 
+5. docker image push localhost:5000/mars
+6. docker image rm busybox
+7. docker image rm localhost:5000/mars
+8. docker image pull localhost:5000/mars
+9. docker run -it  localhost:5000/mars echo "Hello!"
 
 - Private Registry 서비스 에서 이미지 이름 확인
    > curl -X GET http://localhost:5000/v2/_catalog
 
 - Private Registry 서비스 에서 이미지 태그(tag) 확인 
-   > curl -X GET http://localhost:5000/v2/docker-jupyter/tags/list
+   > curl -X GET http://localhost:5000/v2/mars/tags/list
 
 < Google Container Registry 서비스 이용 > 
 
