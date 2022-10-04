@@ -15,7 +15,7 @@
     	   curl \
     	   gnupg \
            lsb-release
-	   # 도커 리포지토리 설정 
+	   # 도커 엔진 설치에 필요한 ca 인증서 서비스, curl, 오픈 프라이버시 가드(pgp 대용), lsb-release(리눅스 기본 규격)설치 
 	4) sudo mkdir -p /etc/apt/keyrings
  	    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 	   # 도커 공식 GPG Key 설정 
@@ -23,12 +23,12 @@
   	   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
            $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 	   # 도커 다운로드할 리포지터리를 설정함. 
-
 	6) sudo apt-get update 
-	   sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin 
+	   # 리포지터리 설정 후 업데이트 수행
+	7) sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin 
            # 도커 엔진, containerd, Docker Compose 설치 
 	
-	7) sudo usermod -a -G docker $USER 
+	8) sudo usermod -a -G docker $USER 
 	   # docker group에 로그인한 유저를 포함함. 
 	   # 재부팅 필요 
 

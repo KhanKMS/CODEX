@@ -1,7 +1,17 @@
+0. aws confiure 
+   	1) IAM에서 사용자 생성  ex)kms4se 
+        2) 생성한 사용자의 access key 발급 
+	2) aws configure 명령 실행 
+		$ aws configure
+		AWS Access Key ID [None]: AKIAIOSFODNN7EXAMPLE
+		AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+		Default region name [None]: ap-northeast-2	
+		Default output format [None]: json
+
 1. Key Pair 생성
 
    	1) aws ec2 create-key-pair --key-name ubuntu --query 'KeyMaterial' --output text > ubuntu.pem
-   	2) chmod 400 MyKeyPair.pem 	
+   	2) chmod 400 ubuntu.pem 	
 	   # 사용자만 읽을 수 있도록 리눅스 권한 변경
 	3) aws ec2 describe-key-pairs --key-name ubuntu
 	   # 키페어 표시 하기 
