@@ -1,0 +1,24 @@
+1. Docker Desktop 
+   - 이미 설치되어 있음.
+
+2. Docker Engine
+   - sudo apt install -y python3 pytho3-pip
+   - sudo pip3 install docker-compose 
+
+3. docker-compose.yml 파일 생성 
+   > 첨부 yaml 파일 참고 바람
+
+4. docker-compose -f docker-compose.yml up -d 
+   > -d 옵션 : daemon 으로 실행 (백그라운드) 
+   > -f 정의 파일 생략시 동일 경로 docker-compose.yml을 사용 
+   - docker-compose -f docker-compose.yml up -d 
+   - docker-compose up -d 
+
+5. docker-compose down 
+   > 컨테이너, 네트워크 종료하고 삭제함. 
+ 
+6. docker-compose stop 
+    > 컨테이너를 종료함. 
+
+7. docker-compose restart 
+    > 종료한 컨테이너를 재시작함. 

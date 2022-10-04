@@ -1,0 +1,41 @@
+
+# YAML 파일 형식으로 기술할 것
+# 들여쓰기는 공백(스페이스)를 반듯이 할것 
+# 기술할 항목 뒤에 :을 붙임 (ex) version: 
+# :뒤에는 반드시 한개 공백 필요 
+
+version: "3" # 도커 컴포즈 버전 기술 
+services:
+  mysqld: # mysql 컨테이너 설정 기술 
+    image: mysql:8.0 # mysql 8.0 사용, 하위 호환을 위해선 5.7 사용  
+    networks: # 사용할 도커 네트워크
+      - wordpressnet
+    volumes: # 사용할 도커 볼륨 
+      - sqlvol01:/var/lib/mysql
+    restart: always # 종료 시 재시작 수행 
+    environment: # 환경 변수 선언 
+      MYSQL_ROOT_PASSWORD: root_pass1000
+      MYSQL_DATABASE: wordpressdb
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: wp_pass2000
+  wordpressd: # 워드프레스 컨테이너 설정 기술 
+    depends_on:  
+      - mysqld
+    image: wordpress  # 태그 생략하면 latest 태그 가져옴
+    networks:
+      - wordpressnet
+    volumes:
+      - wordpressvol01:/var/www/html
+    ports:
+      - 8080:80
+    restart: always 
+    environment: 
+      WORDPRESS_DB_HOST: mysqld
+      WORDPRESS_DB_NAME: wordpressdb
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: wp_pass2000
+networks: #사용 도커 네트워크 
+  wordpressnet:
+volumes: #사용 도커 볼륨 
+  sqlvol01: # mysql 볼륨
+  wordpressvol01: # 워드프레스 볼륨 
