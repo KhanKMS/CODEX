@@ -47,5 +47,12 @@ az aks create \
    System Nodepool은 반드시 2 cpu, 4 GB 메모리 이상 필수, 운영체제는 리눅스만
 
 
+----- Azure Kubernetes 클러스터 인증 -------------
+
+1. 쿠버네티스 클러스터 연결위한 인증 작업  
+   az aks get-credentials --resource-group AKSCluster --name AKSCluster 
+
+2. deploy.yaml 파일에 acr 이미지 경로 수정 필요 
+
 
 

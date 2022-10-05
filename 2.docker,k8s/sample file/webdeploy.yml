@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webdeploy # 디플로이먼트 이름 지정 
+spec:
+  selector:
+    matchLabels:
+      app: webkube
+  replicas: 3 # 3개의 pod는 무조건 실행 
+  template:  # Pod 설정 정보 기술 
+    metadata:
+      labels:
+        app: webkube
+    spec:
+      containers:
+      - name: websvc
+        image: httpd # 사용할 이미지, nginx or httpd
+        ports:
+        - containerPort: 80

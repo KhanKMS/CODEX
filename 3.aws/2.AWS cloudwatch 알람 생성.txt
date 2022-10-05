@@ -1,0 +1,22 @@
+1. 리눅스에서 cpu 부하을 주는 명령어 입력 
+   $ dd if=/dev/urandom | gzip --best >> /dev/null &
+   > 블록복사를 반복하여 리눅스 cpu를 일하게 함. 
+
+2. 리눅스에서 top 명령으로  cpu 부하 확인 
+    $ top 
+
+3. jobs 명령어로 백그라운드 명령 확인 
+   $ jobs
+
+4. kill 명령어로 백그라운드 명령 삭제 
+   $ kill %1
+
+5. CloudWatch에서 경보 생성 
+   - 주의점 알림 에서 새 주제 생성 > 수신 이메일 입력 
+   - 기존 주제 선택 
+   - 수신 이메일을 통해서 Confirm  subscription을 눌러야 수신이됨!
+     (1) AMAZON SNS 사용자 e-mail 등록 
+     (2) 사용자 메일함 Confirm 클릭 
+     (3) AMAZON SNS 구독 확인 대기 중 --> 확인됨. 
+         - 모바일 푸시도 되나 별도 설정 필요함. 
+

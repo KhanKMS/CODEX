@@ -1,0 +1,46 @@
+1. Docker Desktop에서 kubernetes 실행 하기  
+     - Enable Kubernetes 를 체크하면 자동으로 조그만한 쿠버네티스 환경을 실행해줌. 
+     > AWS, Azure, GCP와 같은 퍼블릭 클라우드 서비스를 이용 (비용이 발생)
+     > 쿠버네티스 자체 구축 (물리 서버 2대 이상 필요, 구축에 까다로움) 
+     > 교육관점에서는 Docker Desktop을 사용하거나 Linux minikube를 구축함. 
+        * Linux minikube는 반드시 CPU Core가 2개 이상 이 필요함. 
+
+2. 디플로이먼트 매니페스트 적용
+    $ kubectl apply -f ./apa000dep.yml
+
+3. 서비스 매니페스트 파일 적용 
+    $ kubectl apply -f ./apa000ser.yml
+    
+4. pod, service, deployment 설정 내용 확인 
+    $ kubectl get pod 
+    $ kubectl get svc 
+    $ kubectl get deployment 
+
+5. 웹브라우저에서 http://localhost:30080 실행하면 웹 화면 보여줌.  
+
+6. 디플이먼트 매니페스트 파일에서 replica를 3 -> 5로 변경 
+   > apa000dep.yml -- replicas 3 -> 5
+   $ kubectl apply -f ./apa000dep.yml    # 디플로이먼트 매니패스트 파일을 적용
+   $ kubectl get pod로 확인 요망.  
+
+7. 실행 중인 pod를 임의로 삭제해좀 
+   $ kubectl delete pod apa000dep-84d9f4dbf8-48xtq 
+   > 삭제했지만 replicas가 5개이므로 1개가 자동 생성됨. 
+   $ kubectl get pod
+
+8. 디플로이먼트 매니페스트 파일에서 image를 httpd > nginx로 변경함. 
+   $ kubectl apply -f ./apa000dep.yml 
+   > 이미지를 httpd(아파치2)에서 nginx로 바로 적용되었음. 
+
+9. kubernetes 객체 삭제 
+   $ kubectl delete -f ./apa000dep.yml
+   $ kubectl get deployment
+   $ kubectl delete -f ./apa000ser.yml
+   $ kubectl get service
+
+   cf) kubectl delete service 서비스명 
+   cf) kubectl delete pod 파드명  
+   cf) kubectl delete deployment 디플로이명  
+   
+
+# 사용 매니페스트 파일은 sample file 폴더 참고 바람
