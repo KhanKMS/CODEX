@@ -16,8 +16,12 @@ for i in range(50): # range는 0부터 49까지 50번 반복 후 빠져나간다
     birth_year = 2002-i 
     birth_range = "{}년 3월 1일생 ~ {}년 2월 28(29)일생".format(birth_year, birth_year+1)
 
-    ele_year = birth_year + 7 # 태어난 후 7년 뒤 초등학교 입학 
-    univ_year = birth_year + 19 # 태어난 후 19년 후 대학교 입학 
+    ele_year = birth_year + 7 
+    # 태어난 후 7년 뒤 초등학교 입학 
+    
+    univ_year = birth_year + 19 
+    # 태어난 후 19년 뒤 대학교 입학 
+    
     univ_num = str(univ_year)[2:] 
     # str() 메소드 : 입학년도 4자리를 문자열로 변환 
     # [2:] index 2 부터 마지막 문자까지 가져온다. 
