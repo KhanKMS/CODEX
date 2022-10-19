@@ -6,10 +6,10 @@
         * Linux minikube는 반드시 CPU Core가 2개 이상 이 필요함. 
 
 2. 디플로이먼트 매니페스트 적용
-    $ kubectl apply -f ./apa000dep.yml
+    $ kubectl apply -f ./webdeploy.yml
 
 3. 서비스 매니페스트 파일 적용 
-    $ kubectl apply -f ./apa000ser.yml
+    $ kubectl apply -f ./websvc.yml
     
 4. pod, service, deployment 설정 내용 확인 
     $ kubectl get pod 
