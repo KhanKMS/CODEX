@@ -22,6 +22,7 @@ def enumfiles(main_sheet):
     # 각 엑셀 문서를 차례로 읽기 
     for fname in files: 
         read_book(main_sheet, fname)
+        
 
 # 문서를 열어서 내용을 시트에 복사하기 
 def read_book(main_sheet, fname):
